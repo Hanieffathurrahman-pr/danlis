@@ -1,0 +1,30 @@
+{% include 'backend/navbar.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}Detail Data - {{ upload.nama_file }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detail Data: {{ upload.nama_file }}</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+            {% for col in columns %}
+                <th>{{ col }}</th>
+            {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr>
+            {% for col in columns %}
+                <td>{{ row|get_item:col }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'lihat_data' %}" class="btn btn-secondary">Kembali</a>
+</div>
+{% endblock %}

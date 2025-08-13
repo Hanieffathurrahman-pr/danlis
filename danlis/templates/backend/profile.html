@@ -1,0 +1,34 @@
+{% include "backend/navbar.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Profile</h1>
+    <p>Selamat datang di halaman profile Anda!</p>
+    <div class="row">
+        <div class="col">
+            <p>Nama: {{ user.first_name|default:user.username }}</p>
+        </div>
+        <div class="col">
+            <p>Full Name: {{ user.get_full_name }}</p>
+        </div>
+        <div class="col">   
+            <p>Email: {{ user.email }}</p>
+        </div>
+        <div class="col">
+            <p>Username: {{ user.username }}</p>
+        </div>
+        <div class="col">
+            <p>Last Login: {{ user.last_login|date:"Y-m-d H:i:s" }}</p>
+        </div>
+        <div class="col">
+            <p>Account Created: {{ user.date_joined|date:"Y-m-d H:i:s" }}</p>
+        </div>
+            <p>Is Active: {{ user.is_active }}</p>
+        <div class="col">
+            <p>Is Staff: {{ user.is_staff }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

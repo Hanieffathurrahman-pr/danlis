@@ -1,0 +1,37 @@
+{%include "backend/navbar.html" %}
+{%include "backend/upload.html" %}
+<h2>Data yang Telah Diunggah</h2>
+{% for entry in all_data %}
+    <div class="card my-4">
+        <div class="card-header d-flex justify-content-between">
+            <span><strong>Data ID:</strong> {{ entry.id }} | <strong>Uploaded at:</strong> {{ entry.uploaded_at }}</span>
+            <a href="{% url 'hapus_data' entry.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        {% for col in entry.data.0.keys %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in entry.data %}
+                        <tr>
+                            {% for col in row.values %}
+                                <td>{{ col }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% empty %}
+    <p>Belum ada data yang diunggah.</p>
+{% endfor %}
+{% include 'backend/lihatData.html' %}
+
+
+

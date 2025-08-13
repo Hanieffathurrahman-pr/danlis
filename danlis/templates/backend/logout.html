@@ -1,0 +1,13 @@
+{% include "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Anda telah berhasil keluar</h1>
+            <p>Terima kasih telah menggunakan aplikasi kami. Silakan kembali lagi!</p>
+            <a href="{% url 'login' %}" class="btn btn-primary">Kembali ke Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

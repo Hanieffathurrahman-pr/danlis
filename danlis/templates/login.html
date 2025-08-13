@@ -1,0 +1,38 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{judul}}</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <h2><b>Login</b></h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label">Username</label>
+                        <input type="text" name="identifier" placeholder="Username atau Email" class="form-control" required>
+                        {{ form.username.errors }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_password" class="form-label">Password</label>
+                        <input type="password" name="password" placeholder="Username atau Email"  class="form-control" required>
+                        {{ form.password.errors }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <a href="{% url 'register' %}" class="btn btn-secondary">Belum punya akun? register</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+{%load custom_tags%}
+{% block content %}
+{% load static %}
+<h3>Dataset: {{ dataset.namaFile }}</h3>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            {% for kol in kolom %}
+                <th>{{ kol }}</th>
+            {% endfor %}
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <tr>
+                {% for kol in kolom %}
+                    <td>{{ row|get_item:kol }}</td>
+                {% endfor %}
+                <td>
+                    <form action="{% url 'hapus_dataset' dataset.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Jumlah data: {{ data|length }}</p>
+{% endblock %}
